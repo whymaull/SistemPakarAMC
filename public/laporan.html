@@ -1,251 +1,173 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Laporan - Adit Motor Custom</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Custom styles for active navigation link */
-        .active-nav {
-            background-color: #fee2e2; /* Light red background */
-            color: #dc2626; /* Stronger red text */
-            font-weight: 600; /* Semi-bold font */
-            border-left: 4px solid #dc2626; /* Red border on the left */
-            padding-left: calc(1rem - 4px); /* Adjust padding for border */
-        }
-        /* Custom styles for navigation link hover effect */
-        .nav-link:hover {
-            background-color: #fef2f2; /* Very light red background on hover */
-            color: #dc2626; /* Red text on hover */
-        }
-        /* Apply Inter font to the body */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laporan - Adit Motor Custom</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .active-nav {
+      background-color: #fee2e2;
+      color: #dc2626;
+      font-weight: 600;
+      border-left: 4px solid #dc2626;
+      padding-left: calc(1rem - 4px);
+    }
+    .nav-link:hover {
+      background-color: #fef2f2;
+      color: #dc2626;
+    }
+  </style>
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
-    <div class="flex min-h-screen">
-        <aside class="w-64 bg-white border-r border-gray-200 shadow-lg flex flex-col">
-            <div class="px-6 py-6 border-b border-gray-200">
-                <h1 class="text-2xl font-extrabold text-red-600 flex items-center space-x-3">
-                    <i class="fas fa-motorcycle text-red-500"></i>
-                    <span>AMC Panel</span>
-                </h1>
-            </div>
-            <nav class="p-4 space-y-2 flex-1">
-                <a href="index.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
-                    <i class="fas fa-tachometer-alt mr-3 w-5"></i>Dashboard
-                </a>
-                <a href="diagnosis.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
-                    <i class="fas fa-diagnoses mr-3 w-5"></i>Diagnosis
-                </a>
-                <a href="knowledge.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
-                    <i class="fas fa-database mr-3 w-5"></i>Knowledge
-                </a>
-                <a href="riwayat.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
-                    <i class="fas fa-history mr-3 w-5"></i>Riwayat
-                </a>
-                <a href="laporan.html" class="block px-4 py-3 rounded-lg nav-link active-nav text-gray-700 transition-all duration-200 ease-in-out">
-                    <i class="fas fa-chart-bar mr-3 w-5"></i>Laporan
-                </a>
-            </nav>
-            <div class="p-4 text-sm text-gray-500 border-t border-gray-200">
-                <p>&copy; 2025 Adit Motor Custom</p>
-            </div>
-        </aside>
+  <div class="flex h-screen overflow-hidden">
 
-        <main class="flex-1 p-8 overflow-y-auto">
-            <header class="mb-8">
-                <h2 class="text-3xl font-extrabold text-gray-900 flex items-center gap-3">
-                    <i class="fas fa-chart-bar text-indigo-600"></i>
-                    <span>Statistik Diagnosis</span>
-                </h2>
-                <p class="text-gray-600 mt-2">Analisis data diagnosis motor Anda untuk pemahaman yang lebih baik.</p>
-            </header>
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed z-30 inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out w-64 bg-white border-r border-gray-200 shadow-lg flex flex-col">
+      <div class="px-6 py-6 border-b border-gray-200 flex justify-between items-center">
+        <h1 class="text-2xl font-extrabold text-red-600 flex items-center gap-2">
+          <i class="fas fa-motorcycle text-red-500"></i>
+          <span>AMC Panel</span>
+        </h1>
+        <button class="md:hidden text-gray-700 text-xl" onclick="toggleSidebar()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <nav class="p-4 space-y-2 flex-1">
+        <a href="index.html" class="block px-4 py-3 rounded-lg nav-link">
+          <i class="fas fa-tachometer-alt mr-3 w-5"></i>Dashboard
+        </a>
+        <a href="diagnosis.html" class="block px-4 py-3 rounded-lg nav-link">
+          <i class="fas fa-diagnoses mr-3 w-5"></i>Diagnosis
+        </a>
+        <a href="knowledge.html" class="block px-4 py-3 rounded-lg nav-link">
+          <i class="fas fa-database mr-3 w-5"></i>Knowledge
+        </a>
+        <a href="riwayat.html" class="block px-4 py-3 rounded-lg nav-link">
+          <i class="fas fa-history mr-3 w-5"></i>Riwayat
+        </a>
+        <a href="laporan.html" class="block px-4 py-3 rounded-lg nav-link active-nav">
+          <i class="fas fa-chart-bar mr-3 w-5"></i>Laporan
+        </a>
+      </nav>
+      <div class="p-4 text-sm text-gray-500 border-t border-gray-200 hidden md:block">
+        <p>&copy; 2025 Adit Motor Custom</p>
+      </div>
+    </aside>
 
-            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Distribusi Diagnosis</h3>
-                <div class="h-80"> <canvas id="chartDiagnosis"></canvas>
-                </div>
-            </div>
+    <!-- Main wrapper -->
+    <div class="flex-1 flex flex-col w-full md:ml-64">
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Total Diagnosis</h4>
-                    <p class="text-3xl font-bold text-indigo-600" id="totalDiagnosisCount">0</p>
-                    <p class="text-gray-500 text-sm mt-1">Jumlah total diagnosis yang tercatat.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Diagnosis Terbanyak</h4>
-                    <p class="text-xl font-bold text-red-500" id="mostFrequentDiagnosis">N/A</p>
-                    <p class="text-gray-500 text-sm mt-1">Diagnosis yang paling sering muncul.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Diagnosis Unik</h4>
-                    <p class="text-3xl font-bold text-green-600" id="uniqueDiagnosisCount">0</p>
-                    <p class="text-gray-500 text-sm mt-1">Jumlah jenis diagnosis yang berbeda.</p>
-                </div>
-            </div>
+      <!-- Topbar mobile -->
+      <header class="bg-white shadow px-4 py-4 md:hidden flex items-center gap-3">
+        <button class="text-gray-700 text-xl" onclick="toggleSidebar()">
+          <i class="fas fa-bars"></i>
+        </button>
+        <span class="text-xl font-bold text-red-600">AMC Panel</span>
+      </header>
 
-        </main>
+      <!-- Main content -->
+      <main class="flex-1 p-6 overflow-y-auto">
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-2 flex items-center gap-3">
+          <i class="fas fa-chart-bar text-red-500"></i>
+          <span>Laporan Diagnosa</span>
+        </h2>
+        <p class="text-gray-600 mb-6">Statistik dan distribusi hasil diagnosa motor matic yang telah tercatat.</p>
+
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="bg-white p-6 rounded-xl shadow border border-gray-200 text-center">
+            <p class="text-sm text-gray-500 mb-1">Total Diagnosa</p>
+            <h3 id="totalDiagnosa" class="text-3xl font-bold text-indigo-600">0</h3>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow border border-gray-200 text-center">
+            <p class="text-sm text-gray-500 mb-1">Jenis Diagnosa</p>
+            <h3 id="jenisDiagnosa" class="text-3xl font-bold text-green-600">0</h3>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow border border-gray-200 text-center">
+            <p class="text-sm text-gray-500 mb-1">Kerusakan Tersering</p>
+            <h3 id="kerusakanTersering" class="text-xl font-bold text-red-600">-</h3>
+          </div>
+        </div>
+
+        <!-- Bar Chart -->
+        <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
+          <div class="relative w-full h-[300px] sm:h-[400px] md:h-[450px]">
+            <canvas id="diagnosisChart" class="w-full h-full"></canvas>
+          </div>
+        </div>
+      </main>
     </div>
+  </div>
 
-    <script>
-        // JavaScript for fetching data and rendering the chart
-        document.addEventListener('DOMContentLoaded', () => {
-            // Mock data to simulate the backend response for demonstration purposes
-            // This will be used if the fetch from the actual backend fails.
-            const mockDiagnosisData = [
-                { diagnosis: "Mesin Overheat", timestamp: "2024-01-15T10:00:00Z" },
-                { diagnosis: "Ban Kempes", timestamp: "2024-01-16T11:30:00Z" },
-                { diagnosis: "Rem Blong", timestamp: "2024-01-17T14:00:00Z" },
-                { diagnosis: "Mesin Overheat", timestamp: "2024-01-18T09:00:00Z" },
-                { diagnosis: "Kelistrikan Rusak", timestamp: "2024-01-19T16:00:00Z" },
-                { diagnosis: "Ban Kempes", timestamp: "2024-01-20T10:00:00Z" },
-                { diagnosis: "Rem Blong", timestamp: "2024-01-21T12:00:00Z" },
-                { diagnosis: "Mesin Overheat", timestamp: "2024-01-22T15:00:00Z" },
-                { diagnosis: "Oli Bocor", timestamp: "2024-01-23T08:00:00Z" },
-                { diagnosis: "Kelistrikan Rusak", timestamp: "2024-01-24T13:00:00Z" },
-                { diagnosis: "Ban Kempes", timestamp: "2024-01-25T09:00:00Z" },
-                { diagnosis: "Mesin Overheat", timestamp: "2024-01-26T11:00:00Z" },
-                { diagnosis: "Kopling Aus", timestamp: "2024-01-27T10:00:00Z" },
-                { diagnosis: "Ban Kempes", timestamp: "2024-01-28T14:00:00Z" },
-                { diagnosis: "Rem Blong", timestamp: "2024-01-29T16:00:00Z" },
-            ];
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("-translate-x-full");
+    }
 
-            // Attempt to fetch data from the backend
-            fetch("http://localhost:3000/api/riwayat")
-                .then(res => {
-                    if (!res.ok) {
-                        // If response is not OK, throw an error to be caught by .catch()
-                        throw new Error(`HTTP error! status: ${res.status}`);
-                    }
-                    return res.json();
-                })
-                .then(data => {
-                    // If data is successfully fetched, use it
-                    processAndRenderChart(data);
-                })
-                .catch(error => {
-                    console.error("Error fetching diagnosis data from backend:", error);
-                    // If fetch fails, use mock data and display a warning
-                    const chartContainer = document.getElementById('chartDiagnosis').parentElement;
-                    chartContainer.innerHTML = `
-                        <div class="text-center py-10 text-orange-600">
-                            <i class="fas fa-exclamation-triangle text-5xl mb-4"></i>
-                            <p class="text-xl font-semibold">Gagal memuat data dari backend.</p>
-                            <p class="text-gray-500 mt-2">Menampilkan data contoh. Pastikan server backend berjalan di <code class="font-mono">http://localhost:3000</code> dan endpoint <code class="font-mono">/api/riwayat</code> mengembalikan data yang benar.</p>
-                        </div>
-                    `;
-                    // Process and render chart with mock data as a fallback
-                    processAndRenderChart(mockDiagnosisData);
-                });
+    async function loadChart() {
+      try {
+        const response = await fetch("http://localhost:3000/api/riwayat");
+        const data = await response.json();
 
-            // Function to process data and render the chart
-            function processAndRenderChart(data) {
-                const counts = {};
-                let totalDiagnosis = 0;
-
-                data.forEach(item => {
-                    // Assuming the backend now returns a 'diagnosis' property
-                    if (item.diagnosis) {
-                        if (!counts[item.diagnosis]) {
-                            counts[item.diagnosis] = 0;
-                        }
-                        counts[item.diagnosis]++;
-                        totalDiagnosis++;
-                    }
-                });
-
-                const labels = Object.keys(counts);
-                const values = Object.values(counts);
-
-                let mostFrequent = 'Tidak ada data';
-                let maxCount = 0;
-                if (labels.length > 0) {
-                    labels.forEach(label => {
-                        if (counts[label] > maxCount) {
-                            maxCount = counts[label];
-                            mostFrequent = label;
-                        }
-                    });
-                }
-
-                document.getElementById('totalDiagnosisCount').textContent = totalDiagnosis;
-                document.getElementById('mostFrequentDiagnosis').textContent = mostFrequent;
-                document.getElementById('uniqueDiagnosisCount').textContent = labels.length;
-
-                const backgroundColors = [
-                    '#f87171', '#60a5fa', '#34d399', '#fbbf24',
-                    '#a78bfa', '#f472b6', '#22d3ee', '#a3a3a3',
-                ];
-                const borderColors = [
-                    '#ef4444', '#3b82f6', '#10b981', '#f59e0b',
-                    '#8b5cf6', '#ec4899', '#06b6d4', '#737373',
-                ];
-
-                // Destroy existing chart instance if it exists to prevent re-rendering issues
-                const chartElement = document.getElementById("chartDiagnosis");
-                if (Chart.getChart(chartElement)) {
-                    Chart.getChart(chartElement).destroy();
-                }
-
-                new Chart(chartElement, {
-                    type: "bar",
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: "Jumlah Diagnosis",
-                            data: values,
-                            backgroundColor: backgroundColors.slice(0, labels.length),
-                            borderColor: borderColors.slice(0, labels.length),
-                            borderWidth: 1,
-                            borderRadius: 8,
-                            hoverBackgroundColor: backgroundColors.map(color => `${color}D0`),
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: false },
-                            tooltip: {
-                                backgroundColor: 'rgba(0,0,0,0.7)',
-                                titleFont: { size: 14, weight: 'bold' },
-                                bodyFont: { size: 12 },
-                                padding: 10,
-                                cornerRadius: 6,
-                            },
-                        },
-                        scales: {
-                            x: {
-                                grid: { display: false },
-                                ticks: {
-                                    font: { size: 12, weight: '500' },
-                                    color: '#4b5563'
-                                },
-                                barPercentage: 0.8,
-                                categoryPercentage: 0.7
-                            },
-                            y: {
-                                beginAtZero: true,
-                                grid: { color: '#e5e7eb' },
-                                ticks: {
-                                    font: { size: 12, weight: '500' },
-                                    color: '#4b5563',
-                                    stepSize: 1,
-                                }
-                            }
-                        }
-                    }
-                });
-            }
+        const counts = {};
+        data.forEach(item => {
+          if (item.diagnosis) {
+            counts[item.diagnosis] = (counts[item.diagnosis] || 0) + 1;
+          }
         });
-    </script>
+
+        const labels = Object.keys(counts);
+        const values = Object.values(counts);
+        const colors = labels.map((_, i) =>
+          `hsl(${(i * 360 / labels.length)}, 70%, 60%)`
+        );
+
+        // Update statistik
+        document.getElementById("totalDiagnosa").textContent = data.length;
+        document.getElementById("jenisDiagnosa").textContent = labels.length;
+        const maxIndex = values.indexOf(Math.max(...values));
+        document.getElementById("kerusakanTersering").textContent = labels[maxIndex] || "-";
+
+        const ctx = document.getElementById("diagnosisChart").getContext("2d");
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels,
+            datasets: [{
+              label: "Jumlah Diagnosa",
+              data: values,
+              backgroundColor: colors
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { enabled: true }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { stepSize: 1 }
+              }
+            }
+          }
+        });
+      } catch (error) {
+        console.error("Gagal memuat data chart:", error);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", loadChart);
+  </script>
 </body>
 </html>

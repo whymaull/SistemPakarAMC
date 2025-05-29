@@ -1,139 +1,139 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Knowledge Base - Adit Motor Custom</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Custom styles for active navigation link */
-        .active-nav {
-            background-color: #fee2e2; /* Light red background */
-            color: #dc2626; /* Stronger red text */
-            font-weight: 600; /* Semi-bold font */
-            border-left: 4px solid #dc2626; /* Red border on the left */
-            padding-left: calc(1rem - 4px); /* Adjust padding for border */
-        }
-        /* Custom styles for navigation link hover effect */
-        .nav-link:hover {
-            background-color: #fef2f2; /* Very light red background on hover */
-            color: #dc2626; /* Red text on hover */
-        }
-        /* Apply Inter font to the body */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        /* Style for table rows on hover */
-        .table-row-hover:hover {
-            background-color: #fef2f2; /* Light red background on row hover */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Knowledge Base - Adit Motor Custom</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .active-nav { background-color: #fee2e2; color: #dc2626; font-weight: 600; border-left: 4px solid #dc2626; padding-left: calc(1rem - 4px); }
+    .nav-link:hover { background-color: #fef2f2; color: #dc2626; }
+    body { font-family: 'Inter', sans-serif; }
+    .table-row-hover:hover { background-color: #fef2f2; }
+  </style>
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
-    <div class="flex min-h-screen">
-        <aside class="w-64 bg-white border-r border-gray-200 shadow-lg flex flex-col">
-            <div class="px-6 py-6 border-b border-gray-200">
-                <h1 class="text-2xl font-extrabold text-red-600 flex items-center space-x-3">
-                    <i class="fas fa-motorcycle text-red-500"></i>
-                    <span>AMC Panel</span>
-                </h1>
-            </div>
-            <nav class="p-4 space-y-2 flex-1">
-                <a href="index.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
-                    <i class="fas fa-tachometer-alt mr-3 w-5"></i>Dashboard
-                </a>
-                <a href="diagnosis.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
-                    <i class="fas fa-diagnoses mr-3 w-5"></i>Diagnosis
-                </a>
-                <a href="knowledge.html" class="block px-4 py-3 rounded-lg nav-link active-nav text-gray-700 transition-all duration-200 ease-in-out">
-                    <i class="fas fa-database mr-3 w-5"></i>Knowledge
-                </a>
-                <a href="riwayat.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
-                    <i class="fas fa-history mr-3 w-5"></i>Riwayat
-                </a>
-                <a href="laporan.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
-                    <i class="fas fa-chart-bar mr-3 w-5"></i>Laporan
-                </a>
-            </nav>
-            <div class="p-4 text-sm text-gray-500 border-t border-gray-200">
-                <p>&copy; 2025 Adit Motor Custom</p>
-            </div>
-        </aside>
+  <div class="flex h-screen overflow-hidden">
 
-        <main class="flex-1 p-8 overflow-y-auto">
-            <header class="mb-8">
-                <h2 class="text-3xl font-extrabold text-gray-900 flex items-center gap-3">
-                    <i class="fas fa-book text-blue-600"></i>
-                    <span>Knowledge Base</span>
-                </h2>
-                <p class="text-gray-600 mt-2">Daftar aturan dan hubungan antara gejala dan diagnosis.</p>
-            </header>
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed z-30 inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out w-64 bg-white border-r border-gray-200 shadow-lg flex flex-col">
+      <div class="px-6 py-6 border-b border-gray-200 flex justify-between items-center">
+        <h1 class="text-2xl font-extrabold text-red-600 flex items-center gap-2">
+          <i class="fas fa-motorcycle text-red-500"></i>
+          <span>AMC Panel</span>
+        </h1>
+        <button class="md:hidden text-gray-700 text-xl" onclick="toggleSidebar()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <nav class="p-4 space-y-2 flex-1">
+        <a href="index.html" class="block px-4 py-3 rounded-lg nav-link">
+          <i class="fas fa-tachometer-alt mr-3 w-5"></i>Dashboard
+        </a>
+        <a href="diagnosis.html" class="block px-4 py-3 rounded-lg nav-link">
+          <i class="fas fa-diagnoses mr-3 w-5"></i>Diagnosis
+        </a>
+        <a href="knowledge.html" class="block px-4 py-3 rounded-lg nav-link active-nav">
+          <i class="fas fa-database mr-3 w-5"></i>Knowledge
+        </a>
+        <a href="riwayat.html" class="block px-4 py-3 rounded-lg nav-link">
+          <i class="fas fa-history mr-3 w-5"></i>Riwayat
+        </a>
+        <a href="laporan.html" class="block px-4 py-3 rounded-lg nav-link">
+          <i class="fas fa-chart-bar mr-3 w-5"></i>Laporan
+        </a>
+      </nav>
+      <div class="p-4 text-sm text-gray-500 border-t border-gray-200 hidden md:block">
+        <p>&copy; 2025 Adit Motor Custom</p>
+      </div>
+    </aside>
 
-            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Daftar Aturan Diagnosis</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full table-auto text-sm">
-                        <thead class="bg-gray-50 text-left text-gray-600 uppercase text-xs font-semibold tracking-wider">
-                            <tr>
-                                <th class="px-4 py-3 rounded-tl-lg">#</th>
-                                <th class="px-4 py-3">Gejala</th>
-                                <th class="px-4 py-3 rounded-tr-lg">Diagnosis</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ruleBody" class="divide-y divide-gray-100">
-                            <tr><td colspan="3" class="px-4 py-6 text-center text-gray-400">Memuat data...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </main>
+    <!-- Main wrapper -->
+    <div class="flex-1 flex flex-col w-full md:ml-64">
+
+      <!-- Topbar mobile -->
+      <header class="bg-white shadow px-4 py-4 md:hidden flex items-center gap-3">
+        <button class="text-gray-700 text-xl" onclick="toggleSidebar()">
+          <i class="fas fa-bars"></i>
+        </button>
+        <span class="text-xl font-bold text-red-600">AMC Panel</span>
+      </header>
+
+      <!-- Main content -->
+      <main class="flex-1 p-6 overflow-y-auto">
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-2 flex items-center gap-3">
+          <i class="fas fa-database text-red-500"></i>
+          <span>Basis Pengetahuan</span>
+        </h2>
+        <p class="text-gray-600 mb-6">Daftar semua gejala dan diagnosis dalam sistem pakar motor matic.</p>
+
+        <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">Data Gejala & Diagnosis</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm table-auto">
+              <thead class="bg-gray-50 text-gray-600 uppercase text-xs font-semibold">
+                <tr>
+                  <th class="px-4 py-3">No</th>
+                  <th class="px-4 py-3">Gejala</th>
+                  <th class="px-4 py-3">Diagnosis</th>
+                </tr>
+              </thead>
+              <tbody id="knowledgeTable" class="text-gray-700 divide-y divide-gray-100">
+                <tr><td colspan="3" class="text-center text-gray-400 py-6">Memuat data...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
     </div>
+  </div>
 
-    <script>
-        // JavaScript for fetching data and rendering the table
-        document.addEventListener('DOMContentLoaded', () => {
-            fetch('http://localhost:3000/api/rulebase')
-                .then(res => {
-                    if (!res.ok) {
-                        throw new Error(`HTTP error! status: ${res.status}`);
-                    }
-                    return res.json();
-                })
-                .then(data => {
-                    const tbody = document.getElementById('ruleBody');
-                    tbody.innerHTML = ''; // Clear loading message
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("-translate-x-full");
+    }
 
-                    if (data.length === 0) {
-                        tbody.innerHTML = '<tr><td colspan="3" class="text-center py-6 text-gray-500">Belum ada rule yang tersedia.</td></tr>';
-                        return;
-                    }
-
-                    data.forEach((item, index) => {
-                        const tr = document.createElement('tr');
-                        tr.classList.add('table-row-hover', 'transition-colors', 'duration-150', 'ease-in-out'); // Add hover class and transition
-                        tr.innerHTML = `
-                            <td class="px-4 py-3">${index + 1}</td>
-                            <td class="px-4 py-3 text-gray-700">${item.nama_gejala || '-'}</td>
-                            <td class="px-4 py-3 text-red-600 font-semibold">${item.nama_diagnosis || '-'}</td>
-                        `;
-                        tbody.appendChild(tr);
-                    });
-                })
-                .catch(err => {
-                    console.error("Error fetching rulebase data:", err);
-                    document.getElementById('ruleBody').innerHTML = `
-                        <tr>
-                            <td colspan="3" class="text-center py-6 text-red-600">
-                                <i class="fas fa-exclamation-triangle text-xl mb-2"></i>
-                                <p>Gagal memuat data Knowledge Base.</p>
-                                <p class="text-gray-500 text-sm mt-1">Pastikan server backend berjalan di <code class="font-mono">http://localhost:3000</code> dan endpoint <code class="font-mono">/api/rulebase</code> mengembalikan data yang benar.</p>
-                            </td>
-                        </tr>
-                    `;
-                });
+    function loadKnowledge() {
+      fetch('http://localhost:3000/api/rulebase')
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP error! ${res.status}`);
+          return res.json();
+        })
+        .then(data => {
+          const tbody = document.getElementById('knowledgeTable');
+          tbody.innerHTML = '';
+          if (data.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="3" class="text-center py-6 text-gray-500">Belum ada rule.</td></tr>';
+            return;
+          }
+          data.forEach((item, index) => {
+            const tr = document.createElement('tr');
+            tr.classList.add('table-row-hover', 'transition-colors');
+            tr.innerHTML = `
+              <td class="px-4 py-3 text-center">${index + 1}</td>
+              <td class="px-4 py-3">${item.nama_gejala || '-'}</td>
+              <td class="px-4 py-3 text-red-600 font-semibold">${item.nama_diagnosis || '-'}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+        })
+        .catch(err => {
+          console.error("Gagal load rulebase:", err);
+          document.getElementById('knowledgeTable').innerHTML = `
+            <tr>
+              <td colspan="3" class="text-center py-6 text-red-600">
+                <i class="fas fa-exclamation-triangle text-xl mb-2"></i>
+                <p>Gagal memuat data.</p>
+                <p class="text-gray-500 text-sm">Periksa koneksi ke <code>/api/rulebase</code>.</p>
+              </td>
+            </tr>`;
         });
-    </script>
+    }
+
+    document.addEventListener("DOMContentLoaded", loadKnowledge);
+  </script>
 </body>
 </html>
