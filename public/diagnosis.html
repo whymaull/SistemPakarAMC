@@ -120,7 +120,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      fetch("http://localhost:3000/api/gejala")
+      fetch("https://gg0l3mpr-3000.asse.devtunnels.ms//api/gejala")
         .then(res => res.json())
         .then(data => {
           const container = document.getElementById("gejalaList");
@@ -153,7 +153,7 @@
             <div class="col-span-full text-center text-red-600 py-4">
               <i class="fas fa-exclamation-triangle text-xl mb-2"></i>
               <p>Gagal memuat gejala.</p>
-              <p class="text-gray-500 text-sm mt-1">Pastikan server backend berjalan di <code class="font-mono">http://localhost:3000</code>.</p>
+              <p class="text-gray-500 text-sm mt-1">Pastikan server backend berjalan di <code class="font-mono">https://gg0l3mpr-3000.asse.devtunnels.ms/</code>.</p>
             </div>
           `;
         });
@@ -167,7 +167,7 @@
         return;
       }
 
-      fetch("http://localhost:3000/api/diagnosis", {
+      fetch("https://gg0l3mpr-3000.asse.devtunnels.ms//api/diagnosis", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ gejala_ids: selected }),

@@ -135,9 +135,9 @@
     async function loadDashboard() {
       try {
         const [diagnosis, riwayat, gejala] = await Promise.all([
-          fetchData('http://localhost:3000/api/diagnosis'),
-          fetchData('http://localhost:3000/api/riwayat'),
-          fetchData('http://localhost:3000/api/gejala')
+          fetchData('https://gg0l3mpr-3000.asse.devtunnels.ms//api/diagnosis'),
+          fetchData('https://gg0l3mpr-3000.asse.devtunnels.ms//api/riwayat'),
+          fetchData('https://gg0l3mpr-3000.asse.devtunnels.ms//api/gejala')
         ]);
 
         document.getElementById("totalDiagnosis").textContent = diagnosis.length;
