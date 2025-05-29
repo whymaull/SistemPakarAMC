@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial="initial-scale=1.0"/>
+    <title>Dashboard - Adit Motor Custom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for active navigation link */
+        .active-nav {
+            background-color: #fee2e2; /* Light red background */
+            color: #dc2626; /* Stronger red text */
+            font-weight: 600; /* Semi-bold font */
+            border-left: 4px solid #dc2626; /* Red border on the left */
+            padding-left: calc(1rem - 4px); /* Adjust padding for border */
+        }
+        /* Custom styles for navigation link hover effect */
+        .nav-link:hover {
+            background-color: #fef2f2; /* Very light red background on hover */
+            color: #dc2626; /* Red text on hover */
+        }
+        /* Apply Inter font to the body */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style for table rows on hover */
+        .table-row-hover:hover {
+            background-color: #fef2f2; /* Light red background on row hover */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-64 bg-white border-r border-gray-200 shadow-lg flex flex-col">
+            <div class="px-6 py-6 border-b border-gray-200">
+                <h1 class="text-2xl font-extrabold text-red-600 flex items-center space-x-3">
+                    <i class="fas fa-motorcycle text-red-500"></i>
+                    <span>AMC Panel</span>
+                </h1>
+            </div>
+            <nav class="p-4 space-y-2 flex-1">
+                <a href="index.html" class="block px-4 py-3 rounded-lg nav-link active-nav text-gray-700 transition-all duration-200 ease-in-out">
+                    <i class="fas fa-tachometer-alt mr-3 w-5"></i>Dashboard
+                </a>
+                <a href="diagnosis.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
+                    <i class="fas fa-diagnoses mr-3 w-5"></i>Diagnosis
+                </a>
+                <a href="knowledge.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
+                    <i class="fas fa-database mr-3 w-5"></i>Knowledge
+                </a>
+                <a href="riwayat.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
+                    <i class="fas fa-history mr-3 w-5"></i>Riwayat
+                </a>
+                <a href="laporan.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
+                    <i class="fas fa-chart-bar mr-3 w-5"></i>Laporan
+                </a>
+            </nav>
+            <div class="p-4 text-sm text-gray-500 border-t border-gray-200">
+                <p>&copy; 2025 Adit Motor Custom</p>
+            </div>
+        </aside>
+
+        <main class="flex-1 p-8 overflow-y-auto">
+            <header class="mb-8">
+                <h2 class="text-3xl font-extrabold text-gray-900 flex items-center gap-3">
+                    <i class="fas fa-tachometer-alt text-red-500"></i>
+                    <span>Dashboard</span>
+                </h2>
+                <p class="text-gray-600 mt-2">Ringkasan cepat performa dan data sistem diagnosis Anda.</p>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-[1.005]">
+                    <p class="text-sm text-gray-500 mb-2">Total Diagnosis</p>
+                    <h3 id="totalDiagnosis" class="text-4xl font-bold text-indigo-600">0</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-[1.005]">
+                    <p class="text-sm text-gray-500 mb-2">Total Riwayat Diagnosa</p>
+                    <h3 id="totalRiwayat" class="text-4xl font-bold text-green-600">0</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-[1.005]">
+                    <p class="text-sm text-gray-500 mb-2">Jumlah Gejala</p>
+                    <h3 id="totalGejala" class="text-4xl font-bold text-yellow-600">0</h3>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Riwayat Diagnosa Terbaru</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full table-auto text-sm">
+                        <thead class="bg-gray-50 text-left text-gray-600 uppercase text-xs font-semibold tracking-wider">
+                            <tr>
+                                <th class="px-4 py-3 rounded-tl-lg">Tanggal</th>
+                                <th class="px-4 py-3">Gejala</th>
+                                <th class="px-4 py-3 rounded-tr-lg">Diagnosis</th>
+                            </tr>
+                        </thead>
+                        <tbody id="riwayatList" class="text-gray-700 divide-y divide-gray-100">
+                            <tr><td colspan="3" class="text-center text-gray-400 py-6">Memuat data...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Function to fetch data from a given URL
+        async function fetchData(url) {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status} from ${url}`);
+            }
+            return await response.json();
+        }
+
+        // Function to load and display dashboard data
+        async function loadDashboard() {
+            try {
+                // Fetch all necessary data concurrently
+                const [diagnosisData, riwayatData, gejalaData] = await Promise.all([
+                    fetchData('http://localhost:3000/api/diagnosis'),
+                    fetchData('http://localhost:3000/api/riwayat'),
+                    fetchData('http://localhost:3000/api/gejala')
+                ]);
+
+                // Update summary cards
+                document.getElementById("totalDiagnosis").textContent = diagnosisData.length;
+                document.getElementById("totalRiwayat").textContent = riwayatData.length;
+                document.getElementById("totalGejala").textContent = gejalaData.length;
+
+                // Render latest diagnosis history table
+                const tbody = document.getElementById("riwayatList");
+                tbody.innerHTML = ''; // Clear existing content
+
+                if (riwayatData.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="3" class="text-center text-gray-500 py-6">Tidak ada riwayat diagnosa terbaru.</td></tr>';
+                    return;
+                }
+
+                // Map gejala IDs to their names for display
+                const gejalaMap = new Map(gejalaData.map(g => [g.id, g.nama]));
+
+                riwayatData.slice(0, 5).forEach(item => { // Display only the latest 5 entries
+                    const tr = document.createElement("tr");
+                    tr.classList.add('table-row-hover', 'transition-colors', 'duration-150', 'ease-in-out');
+
+                    let gejalaDisplay = 'N/A';
+                    try {
+                        let parsedGejala = item.gejala;
+                        // Attempt to parse as JSON first
+                        if (typeof item.gejala === 'string' && item.gejala.startsWith('[') && item.gejala.endsWith(']')) {
+                            parsedGejala = JSON.parse(item.gejala);
+                        } else if (typeof item.gejala === 'string') {
+                            // If not JSON, try to parse as comma-separated numbers
+                            parsedGejala = item.gejala.split(',').map(s => s.trim()).filter(s => s !== '').map(Number);
+                        }
+
+                        if (Array.isArray(parsedGejala) && parsedGejala.length > 0) {
+                            // Get gejala names from the map, fallback to "ID <nomor>" if not found
+                            const names = parsedGejala.map(id => gejalaMap.get(id) || `ID ${id}`);
+                            gejalaDisplay = names.join(', ');
+                        } else {
+                            gejalaDisplay = 'Tidak ada gejala';
+                        }
+                    } catch (e) {
+                        console.warn("Gagal mengurai gejala, menampilkan string asli:", item.gejala, e);
+                        gejalaDisplay = item.gejala; // Fallback to raw string if parsing fails
+                    }
+
+                    tr.innerHTML = `
+                        <td class="px-4 py-3 whitespace-nowrap">${new Date(item.waktu).toLocaleString('id-ID', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</td>
+                        <td class="px-4 py-3 text-gray-700">${gejalaDisplay}</td>
+                        <td class="px-4 py-3 font-semibold text-red-600">${item.diagnosis || '-'}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error("Kesalahan saat memuat data dashboard:", error);
+                // Update UI to show error message
+                document.getElementById("totalDiagnosis").textContent = 'Error';
+                document.getElementById("totalRiwayat").textContent = 'Error';
+                document.getElementById("totalGejala").textContent = 'Error';
+
+                const tbody = document.getElementById("riwayatList");
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="3" class="text-center py-6 text-red-600">
+                            <i class="fas fa-exclamation-triangle text-3xl mb-2"></i>
+                            <p class="font-semibold">Gagal memuat data dari backend.</p>
+                            <p class="text-gray-500 text-sm mt-1">Pastikan server backend berjalan di <code class="font-mono">http://localhost:3000</code> dan endpoint API berfungsi dengan benar.</p>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Display a loading message initially and then load dashboard data
+        document.addEventListener('DOMContentLoaded', () => {
+            const tbody = document.getElementById("riwayatList");
+            tbody.innerHTML = '<tr><td colspan="3" class="text-center text-gray-400 py-6">Memuat data...</td></tr>';
+            loadDashboard();
+        });
+    </script>
+</body>
+</html>

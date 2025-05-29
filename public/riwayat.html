@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Riwayat Diagnosa - Adit Motor Custom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for active navigation link */
+        .active-nav {
+            background-color: #fee2e2; /* Light red background */
+            color: #dc2626; /* Stronger red text */
+            font-weight: 600; /* Semi-bold font */
+            border-left: 4px solid #dc2626; /* Red border on the left */
+            padding-left: calc(1rem - 4px); /* Adjust padding for border */
+        }
+        /* Custom styles for navigation link hover effect */
+        .nav-link:hover {
+            background-color: #fef2f2; /* Very light red background on hover */
+            color: #dc2626; /* Red text on hover */
+        }
+        /* Apply Inter font to the body */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style for table rows on hover */
+        .table-row-hover:hover {
+            background-color: #fef2f2; /* Light red background on row hover */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="w-64 bg-white border-r border-gray-200 shadow-lg flex flex-col">
+            <div class="px-6 py-6 border-b border-gray-200">
+                <h1 class="text-2xl font-extrabold text-red-600 flex items-center space-x-3">
+                    <i class="fas fa-motorcycle text-red-500"></i>
+                    <span>AMC Panel</span>
+                </h1>
+            </div>
+            <nav class="p-4 space-y-2 flex-1">
+                <a href="index.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
+                    <i class="fas fa-tachometer-alt mr-3 w-5"></i>Dashboard
+                </a>
+                <a href="diagnosis.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
+                    <i class="fas fa-diagnoses mr-3 w-5"></i>Diagnosis
+                </a>
+                <a href="knowledge.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
+                    <i class="fas fa-database mr-3 w-5"></i>Knowledge
+                </a>
+                <a href="riwayat.html" class="block px-4 py-3 rounded-lg nav-link active-nav text-gray-700 transition-all duration-200 ease-in-out">
+                    <i class="fas fa-history mr-3 w-5"></i>Riwayat
+                </a>
+                <a href="laporan.html" class="block px-4 py-3 rounded-lg nav-link text-gray-700 transition-all duration-200 ease-in-out">
+                    <i class="fas fa-chart-bar mr-3 w-5"></i>Laporan
+                </a>
+            </nav>
+            <div class="p-4 text-sm text-gray-500 border-t border-gray-200">
+                <p>&copy; 2025 Adit Motor Custom</p>
+            </div>
+        </aside>
+
+        <main class="flex-1 p-8 overflow-y-auto">
+            <header class="mb-8">
+                <h2 class="text-3xl font-extrabold text-gray-900 flex items-center gap-3">
+                    <i class="fas fa-history text-yellow-600"></i>
+                    <span>Riwayat Diagnosa</span>
+                </h2>
+                <p class="text-gray-600 mt-2">Lihat semua riwayat diagnosa yang telah dilakukan pada sistem.</p>
+            </header>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Daftar Riwayat</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full table-auto text-sm">
+                        <thead class="bg-gray-50 text-left text-gray-600 uppercase text-xs font-semibold tracking-wider">
+                            <tr>
+                                <th class="px-4 py-3 rounded-tl-lg">No</th>
+                                <th class="px-4 py-3">Waktu</th>
+                                <th class="px-4 py-3">Gejala</th>
+                                <th class="px-4 py-3 rounded-tr-lg">Diagnosis</th>
+                            </tr>
+                        </thead>
+                        <tbody id="riwayatBody" class="divide-y divide-gray-100">
+                            <tr><td colspan="4" class="text-center text-gray-400 py-6">Memuat data...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mock data to simulate the backend response for demonstration purposes
+        const mockRiwayatData = [
+            { waktu: "2024-05-28T00:43:00Z", gejala: "[29,30,31,32,33,34,35,36,37,38,39,40]", diagnosis: "Asap Putih dari Knalpot" },
+            { waktu: "2024-05-28T00:22:00Z", gejala: "13,14,15,16", diagnosis: "Kerusakan Rumah Roller" },
+            { waktu: "2024-05-28T00:09:00Z", gejala: "29,35", diagnosis: "Stang Getar Saat Kecepatan Tinggi" },
+            { waktu: "2024-05-28T00:06:00Z", gejala: "32,46,47", diagnosis: "Kerusakan Rumah Roller" },
+            { waktu: "2024-05-28T00:06:00Z", gejala: "37,39,41,46", diagnosis: "Asap Putih dari Knalpot" }
+        ];
+        // Mock gejala data for mapping IDs to names
+        const mockGejalaData = [
+            { id: 1, nama: "Suhu mesin tinggi" }, { id: 2, nama: "Tekanan ban rendah" },
+            { id: 3, nama: "Asap knalpot hitam" }, { id: 4, nama: "Getaran stang" },
+            { id: 5, nama: "Bau terbakar" }, { id: 6, nama: "Tuas rem keras" },
+            { id: 7, nama: "Jarak pengereman panjang" }, { id: 8, nama: "Suara decit rem" },
+            { id: 9, nama: "Lampu tidak menyala" }, { id: 10, nama: "Aki lemah" },
+            { id: 11, nama: "Tetesan oli di lantai" }, { id: 12, nama: "Kopling Aus" },
+            { id: 13, nama: "Asap putih" }, { id: 14, nama: "Getaran di CVT" },
+            { id: 15, nama: "Motor ngempos saat naik" }, { id: 16, nama: "Tarikan berat" },
+            { id: 17, nama: "Kerusakan Rumah Roller" }, { id: 18, nama: "Stang Getar Saat Kecepatan Tinggi" },
+            { id: 19, nama: "Ring seher aus" }, { id: 20, nama: "Sil klep bocor" },
+            { id: 21, nama: "Sirip mesin kotor" }, { id: 22, nama: "Starter tidak bunyi" },
+            { id: 23, nama: "Switch rem rusak" }, { id: 24, nama: "Tenaga mesin lemah" },
+            { id: 25, nama: "Throttle body kotor" }, { id: 26, nama: "V-belt aus" },
+            { id: 27, nama: "Volume oli kurang" }, { id: 28, nama: "Asap Putih dari Knalpot" },
+            { id: 29, nama: "Rem blong" }, { id: 30, nama: "Ring seher aus" },
+            { id: 31, nama: "Sil klep bocor" }, { id: 32, nama: "Sirip mesin kotor" },
+            { id: 33, nama: "Stang bergetar" }, { id: 34, nama: "Starter tidak bunyi" },
+            { id: 35, nama: "Switch rem rusak" }, { id: 36, nama: "Tarikan berat" },
+            { id: 37, nama: "Tenaga mesin lemah" }, { id: 38, nama: "Throttle body kotor" },
+            { id: 39, nama: "V-belt aus" }, { id: 40, nama: "Volume oli kurang" },
+            { id: 41, nama: "Asap Putih dari Knalpot" }, { id: 46, nama: "Ban tidak seimbang" },
+            { id: 47, nama: "Shockbreaker rusak" }, { id: 48, nama: "Kabel busi longgar" },
+            { id: 49, nama: "Filter udara kotor" }, { id: 50, nama: "Busi mati" }
+        ];
+
+        // Function to fetch data from a given URL, with mock data fallback
+        async function fetchData(url, mockData) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                console.error(`Error fetching data from ${url}:`, error);
+                return mockData; // Return mock data on error
+            }
+        }
+
+        // Function to render the table with provided data
+        async function renderRiwayatTable(riwayatData, gejalaData) {
+            const tbody = document.getElementById("riwayatBody");
+            tbody.innerHTML = ''; // Clear previous content
+
+            if (riwayatData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center text-gray-500 py-6">Tidak ada data riwayat</td></tr>';
+                return;
+            }
+
+            const gejalaMap = new Map(gejalaData.map(g => [g.id, g.nama]));
+
+            riwayatData.forEach((item, i) => {
+                const tr = document.createElement('tr');
+                tr.classList.add('table-row-hover', 'transition-colors', 'duration-150', 'ease-in-out'); // Add hover class and transition
+
+                let gejalaDisplay = 'N/A';
+                try {
+                    let parsedGejala = item.gejala;
+                    // Attempt to parse as JSON first
+                    if (typeof item.gejala === 'string' && item.gejala.startsWith('[') && item.gejala.endsWith(']')) {
+                        parsedGejala = JSON.parse(item.gejala);
+                    } else if (typeof item.gejala === 'string') {
+                        // If not JSON, try to parse as comma-separated numbers
+                        parsedGejala = item.gejala.split(',').map(s => s.trim()).filter(s => s !== '').map(Number);
+                    }
+
+                    if (Array.isArray(parsedGejala) && parsedGejala.length > 0) {
+                        // Get gejala names from the map, fallback to "ID <nomor>" if not found
+                        const names = parsedGejala.map(id => gejalaMap.get(id) || `ID ${id}`);
+                        gejalaDisplay = names.join(', ');
+                    } else {
+                        gejalaDisplay = 'Tidak ada gejala';
+                    }
+                } catch (e) {
+                    console.warn("Gagal mengurai gejala, menampilkan string asli:", item.gejala, e);
+                    gejalaDisplay = item.gejala; // Fallback to raw string if parsing fails
+                }
+
+                tr.innerHTML = `
+                    <td class="px-4 py-3">${i + 1}</td>
+                    <td class="px-4 py-3 whitespace-nowrap">${new Date(item.waktu).toLocaleString('id-ID', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</td>
+                    <td class="px-4 py-3 text-gray-700">${gejalaDisplay}</td>
+                    <td class="px-4 py-3 text-red-600 font-semibold">${item.diagnosis || '-'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Fetch and render data when the page loads
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Display loading message initially
+            document.getElementById("riwayatBody").innerHTML = '<tr><td colspan="4" class="text-center text-gray-400 py-6">Memuat data...</td></tr>';
+
+            const riwayatPromise = fetchData('http://localhost:3000/api/riwayat', mockRiwayatData);
+            const gejalaPromise = fetchData('http://localhost:3000/api/gejala', mockGejalaData);
+
+            try {
+                const [riwayatData, gejalaData] = await Promise.all([riwayatPromise, gejalaPromise]);
+                renderRiwayatTable(riwayatData, gejalaData);
+            } catch (error) {
+                // This catch block will only run if fetchData itself throws an error *before* returning mockData,
+                // or if Promise.all fails for some reason. The fetchData already handles its own errors.
+                console.error("Failed to load all necessary data:", error);
+                document.getElementById('riwayatBody').innerHTML = `
+                    <tr>
+                        <td colspan="4" class="text-center py-6 text-red-600">
+                            <i class="fas fa-exclamation-triangle text-xl mb-2"></i>
+                            <p>Gagal memuat data riwayat.</p>
+                            <p class="text-gray-500 text-sm mt-1">Pastikan server backend berjalan di <code class="font-mono">http://localhost:3000</code> dan endpoint API berfungsi dengan benar.</p>
+                        </td>
+                    </tr>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
