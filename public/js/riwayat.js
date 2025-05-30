@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const tbody = document.getElementById("riwayatTableBody");
 
-  fetch("http://localhost:3000/api/riwayat")
+  fetch("https://gg0l3mpr-3000.asse.devtunnels.ms/api/riwayat")
     .then(res => res.json())
     .then(data => {
       data.forEach((item, index) => {

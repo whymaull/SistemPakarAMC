@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const tbody = document.getElementById("ruleTableBody");
 
-  fetch("http://localhost:3000/api/rulebase")
+  fetch("https://gg0l3mpr-3000.asse.devtunnels.ms/api/rulebase")
     .then(res => res.json())
     .then(data => {
       data.forEach((rule, index) => {
