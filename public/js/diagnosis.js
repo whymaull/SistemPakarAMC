@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultText = document.getElementById("resultText");
 
   // Fetch gejala
-  fetch("https://gg0l3mpr-3000.asse.devtunnels.ms/api/gejala")
+  fetch("https://gg0l3mpr-3000.asse.devtunnels.msapi/gejala")
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById("gejalaList");
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .filter(cb => cb.checked)
       .map(cb => parseInt(cb.value));
 
-    fetch("https://gg0l3mpr-3000.asse.devtunnels.ms/api/rulebase")
+    fetch("https://gg0l3mpr-3000.asse.devtunnels.msapi/rulebase")
       .then(res => res.json())
       .then(rules => {
         const grouped = {};
@@ -56,14 +56,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (bestMatch) {
-          fetch(`https://gg0l3mpr-3000.asse.devtunnels.ms/api/diagnosis`)
+          fetch(`https://gg0l3mpr-3000.asse.devtunnels.msapi/diagnosis`)
             .then(res => res.json())
             .then(diagnosisList => {
               const found = diagnosisList.find(d => d.id == bestMatch);
               resultText.innerHTML = `<strong>${found.nama}</strong><br>${found.saran}`;
 
               // Simpan riwayat
-              fetch("https://gg0l3mpr-3000.asse.devtunnels.ms/api/riwayat", {
+              fetch("https://gg0l3mpr-3000.asse.devtunnels.msapi/riwayat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

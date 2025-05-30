@@ -121,8 +121,8 @@
 
       try {
         const [riwayatData, gejalaData] = await Promise.all([
-          fetchData("https://gg0l3mpr-3000.asse.devtunnels.ms//api/riwayat"),
-          fetchData("https://gg0l3mpr-3000.asse.devtunnels.ms//api/gejala"),
+          fetchData("https://gg0l3mpr-3000.asse.devtunnels.ms/api/riwayat"),
+          fetchData("https://gg0l3mpr-3000.asse.devtunnels.ms/api/gejala"),
         ]);
 
         const gejalaMap = new Map(gejalaData.map(g => [g.id, g.nama]));

@@ -98,7 +98,7 @@
     }
 
     function loadKnowledge() {
-      fetch('https://gg0l3mpr-3000.asse.devtunnels.ms//api/rulebase')
+      fetch('https://gg0l3mpr-3000.asse.devtunnels.ms/api/rulebase')
         .then(res => {
           if (!res.ok) throw new Error(`HTTP error! ${res.status}`);
           return res.json();
