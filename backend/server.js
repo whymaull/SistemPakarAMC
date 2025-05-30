@@ -13,11 +13,14 @@ const diagnosisRoutes = require('./routes/diagnosis');
 const gejalaRoutes = require('./routes/gejala');
 const rulebaseRoutes = require('./routes/rulebase');
 const riwayatRoutes = require('./routes/riwayat');
+const authRoutes = require('./routes/auth');
 
+app.use('/api/auth', authRoutes);
 app.use('/api/diagnosis', diagnosisRoutes);
 app.use('/api/gejala', gejalaRoutes);
 app.use('/api/rulebase', rulebaseRoutes);
 app.use('/api/riwayat', riwayatRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Server berjalan di http://localhost:${PORT}`);
